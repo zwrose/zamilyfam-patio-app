@@ -5,6 +5,9 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
+var indexRouter = require('./routes/ifttt_lights_off');
+var indexRouter = require('./routes/ifttt_lights_on');
+var indexRouter = require('./routes/ifttt_status');
 
 var app = express();
 
