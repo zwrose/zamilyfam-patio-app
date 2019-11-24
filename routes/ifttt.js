@@ -1,10 +1,11 @@
 var express = require('express');
+var uuid = require('uuid/v4');
 var router = express.Router();
 
 var authCheck = function(req, res, next) {
   var serviceKey = req.get('IFTTT-Service-Key');
   var channelKey = req.get('IFTTT-Channel-Key');
-  var realKey = 'VPZA9GURJmf1SQ5joYgzQMZskTGHzzsBfjW3KUbg03roPhqWoOXIAQStTb8Zswc-';
+  var realKey = process.env.IFTTT_SERVICE_KEY;
 
   if (serviceKey == realKey || channelKey == realKey) {
     next();
