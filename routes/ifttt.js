@@ -20,7 +20,11 @@ router.get('/status', function(req, res, next) {
 });
 
 router.post('/test/setup', function(req, res, next) {
-
+  res.send({
+    data: {
+      samples: {}
+    }
+  });
 });
 
 router.post('/trigger/lights_off', function(req, res, next) {
