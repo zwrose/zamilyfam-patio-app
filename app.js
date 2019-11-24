@@ -5,9 +5,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var iftttLightsOffRouter = require('./routes/ifttt_lights_off');
-var iftttLightsOnRouter = require('./routes/ifttt_lights_on');
-var iftttStatusRouter = require('./routes/ifttt_status');
+var iftttRouter = require('./routes/ifttt');
+
 
 var app = express();
 
@@ -21,13 +20,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-console.log(indexRouter);
-console.log(iftttStatusRouter);
-
 app.use('/', indexRouter);
-app.use('/ifttt/v1/trigger/lights_off', iftttLightsOffRouter);
-app.use('/ifttt/v1/trigger/lights_on', iftttLightsOnRouter);
-app.use('/ifttt/v1/status', iftttStatusRouter);
+app.use('/ifttt/v1', iftttRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
