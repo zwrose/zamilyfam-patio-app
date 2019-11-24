@@ -21,6 +21,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+console.log(indexRouter);
+console.log(iftttStatusRouter);
+
 app.use('/', indexRouter);
 app.use('/ifttt/v1/trigger/lights_off', iftttLightsOffRouter);
 app.use('/ifttt/v1/trigger/lights_on', iftttLightsOnRouter);
