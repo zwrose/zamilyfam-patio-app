@@ -2,10 +2,21 @@
 <html>
   <head>
     <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <h1>Patio Lights Control</h1>
+    <% if(result) { %>
+      <p><%= result.success %></p>
+      <p><%= result.description %></p>
+    <% } %>
+    <form action="/" method="post">
+      <input id="team_name" type="hidden" name="onOff" value="on">
+      <input type="submit" value="Lights On">
+  </form>
+  <br />
+  <form action="/" method="post">
+    <input id="team_name" type="hidden" name="onOff" value="off">
+    <input type="submit" value="Lights Off">
+</form>
   </body>
 </html>
