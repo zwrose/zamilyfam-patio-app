@@ -33,9 +33,9 @@ router.post('/', function(req, res, next) {
   };
 
   redis.get(req.body.onOff, function(err, result) { 
-    // console.log("what is in Redis:", result);
-    // console.log("is the 'data' present? if this is undefined, then no:", JSON.parse(result).data)
-    // console.log("is 'data' an array?", Array.isArray(JSON.parse(result).data));
+    console.log("what is in Redis:", result);
+    console.log("is the 'data' present? if this is undefined, then no:", JSON.parse(result).data)
+    console.log("is 'data' an array?", Array.isArray(JSON.parse(result).data));
     if (err) { // error occurred
       resultOutput.description = err;
 
@@ -45,29 +45,29 @@ router.post('/', function(req, res, next) {
       });
 
     } else if (JSON.parse(result).data && Array.isArray(JSON.parse(result).data)) { // add to the existing array, trim if >50
-      // console.log("did exist", JSON.parse(result))
+      console.log("did exist", JSON.parse(result).data)
       
       // console.log("data array that was in redis", JSON.parse(result).data);
 
-      var newItems = JSON.parse(result).data;
+      var newItems = JSON.parse(result);
 
       // console.log("before unshift, should be same as redis", newItems);
 
-      newItems.unshift(thisItem.data[0]);
+      newItems.data.unshift(thisItem.data[0]);
 
       // console.log("after unshift",newItems);
 
       // console.log("length of array", newItems.length);
 
-      if (newItems.length > 50) {
-        newItems = newItems.slice(0,50);
+      if (newItems.data.length > 50) {
+        newItems.data = newItems.data.slice(0,50);
       }
-      // console.log("stringified before back to redis", JSON.stringify(newItems));
+      console.log("stringified before back to redis", JSON.stringify(newItems));
       redis.set(req.body.onOff, JSON.stringify(newItems));
 
 
     } else { // create array, didn't exist
-      // console.log("none existed")
+      console.log("none existed")
 
       redis.set(req.body.onOff, JSON.stringify(thisItem));
 

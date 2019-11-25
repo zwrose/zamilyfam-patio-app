@@ -35,7 +35,13 @@ router.post('/trigger/lights_off', function(req, res, next) {
 });
 
 router.post('/trigger/lights_on', function(req, res, next) {
-
+  redis.get("on", function(err, result) { 
+    if (JSON.parse(result).data && Array.isArray(JSON.parse(result).data)) { 
+      res.send(JSON.parse(result));
+    } else {
+      
+    }
+  });
 });
 
 module.exports = router;
