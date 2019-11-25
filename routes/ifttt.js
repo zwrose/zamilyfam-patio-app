@@ -1,6 +1,8 @@
 var express = require('express');
 var uuid = require('uuid/v4');
 var router = express.Router();
+var Redis = require('ioredis');
+var redis = new Redis(process.env.REDIS_URL);
 
 var authCheck = function(req, res, next) {
   var serviceKey = req.get('IFTTT-Service-Key');
