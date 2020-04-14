@@ -6,6 +6,8 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var iftttRouter = require('./routes/ifttt');
+var loganRouter = require('./routes/logan');
+
 
 
 var app = express();
@@ -22,6 +24,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/ifttt/v1', iftttRouter);
+app.use('/logan', loganRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
